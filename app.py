@@ -17,6 +17,10 @@ def index():
 @app.route('/predictimage/', methods=["GET", "POST"])
 def predict_image():
     return render_template('prediction.html')
+	
+@app.route('/examples/')
+def examples():
+    return render_template('examples.html')
 
 
 app.run(debug=True)
