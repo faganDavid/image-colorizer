@@ -2,7 +2,7 @@
 
 <html>
 
-<h1>Upload a Grayscale Image to Colorize</h1>
+<h1><p style="color:white">Upload a Grayscale Image to Colorize</p></h1>
 
 <head>
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
@@ -14,6 +14,13 @@
     <script src="{{ url_for('static', filename='upload.js') }}"></script>
 
     <style>
+		body {
+        background-image: url('https://wallpaperbat.com/down/378947-artificial-neural-networks-data-driven-investor');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+		background-size: 100% 100%;
+      }
         article,
         aside,
         figure,
@@ -27,19 +34,17 @@
         }
     </style>
 </head>
-
 <body>
+    <br />
     <form action="http://127.0.0.1:5000/predictimage" method="POST" enctype="multipart/form-data">
         <input type='file' name='file' onchange="readURL(this);" />
         <img id="blah" src="#" alt="your image" />
         <button type="submit">Submit & predict</button>
 
     </form>
-</body>
-<body>
 	<br />
 	<br /> 
 	<br /> 
-	<a href="http://127.0.0.1:5000/examples">To see existing examples:</a>
+	<a href="http://127.0.0.1:5000/examples"><p style="color:white">To see existing examples:</p></a>
 </body>
 </html>
