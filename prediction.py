@@ -3,6 +3,7 @@ np.random.seed(1)
 from warnings import simplefilter 
 simplefilter(action='ignore', category=FutureWarning)
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 import cv2
 
 from tensorflow import set_random_seed
