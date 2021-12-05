@@ -16,6 +16,8 @@ tf.get_logger().setLevel('ERROR') # Filter out annoying WARNING deprecated metho
 
 # https://github.com/tensorflow/tensorflow/issues/28287#issuecomment-495005162
 tf_config = tf.ConfigProto(intra_op_parallelism_threads=1, inter_op_parallelism_threads=1)
+tf_config.graph_options.optimizer_options.global_jit_level = tf.OptimizerOptions.ON_1
+
 sess = tf.Session(config=tf_config)
 graph = tf.get_default_graph()
 

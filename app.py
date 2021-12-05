@@ -12,6 +12,8 @@ import io
 UPLOAD_FOLDER = 'upload'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
