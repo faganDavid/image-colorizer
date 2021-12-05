@@ -11,7 +11,7 @@
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     <meta charset=utf-8 />
 
-    <script src="{{ url_for('static', filename='upload.js') }}"></script>
+    
 
     <style>
         article,
@@ -35,6 +35,11 @@
         <button type="submit">Submit & predict</button>
 
     </form>
-</body>
 
+    <canvas id="myCanvas" width="100" height="100" style="z-index: 1;">
+        Your browser does not support the HTML canvas tag.</canvas>
+    <button name="getMask" id="getMask"> Show Mask </button>
+
+</body>
+<script src="{{ url_for('static', filename='upload.js') }}"></script>
 </html>

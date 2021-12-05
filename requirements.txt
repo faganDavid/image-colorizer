@@ -1,5 +1,5 @@
 click==8.0.3
-Flask==1.1.2
+Flask==2.0.2
 itsdangerous==2.0.1
 Jinja2==3.0.3
 MarkupSafe==2.0.1
@@ -9,7 +9,7 @@ keras==2.1.5
 Numpy==1.20.1
 Pandas==1.2.4
 scikit-learn==0.24.1
-tensorflow==1.15.0
-tensorflow-gpu==1.15
+tensorflow==1.14.0
+tensorflow-gpu==1.14
 matplotlib
 
