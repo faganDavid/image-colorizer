@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+<h1><p style="color:white">Upload a Grayscale Image to Colorize</p></h1>
+
+<head>
+    <head>
+        <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css"
+            rel="stylesheet" type="text/css" />
+        <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+        <meta charset=utf-8 />
+
+    <style>
+		body {
+        background-image: url('https://wallpaperbat.com/down/378947-artificial-neural-networks-data-driven-investor');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+		background-size: 100% 100%;
+      }
+        article,
+        aside,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="300" height="300" style="z-index: 1;">
+        Your browser does not support the HTML canvas tag.</canvas>
+    <form method="POST" enctype="multipart/form-data">
+        <img id="grayScaleImg" src="#" alt="your image" />
+        <input type="file" name="file" onchange="readURL(this);">
+        <button type="submit" role="button"  >Upload File</button>
+    </form>
+
+
+<script src="{{ url_for('static', filename='upload.js') }}"></script>
+	<br />
+	<br /> 
+	<br /> 
+	<a href="http://127.0.0.1:5000/examples"><p style="color:white">To see existing examples:</p></a>
+</body>
+</html>
