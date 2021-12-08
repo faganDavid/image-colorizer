@@ -1,0 +1,80 @@
+namecheap.com
+
+76/78 Queensway, London W2 3RL, United Kingdom
+
+Steps to setup GCP VM to run Flask image-colorizer
+
+Added private key to talk to github:
+  gcloud compute scp C:\Users\trent\.ssh\id_rsa_github trent@flask-colorizor-2:/home/trent/.ssh  --zone "europe-north1-a" --project "findpremiums"
+
+Add hdf5 file onto VM:
+  cd to where you have hdf5 file
+  gcloud compute scp keras_zhang_model.hdf5 trent@flask-colorizor-2:/home/trent/workspace/image-colorizer/  --zone "europe-north1-a" --project "findpremiums"
+
+install miniconda:
+  https://varhowto.com/install-miniconda-ubuntu-18-04/
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    chmod +x Miniconda3-latest-Linux-x86_64.sh
+    ./Miniconda3-latest-Linux-x86_64.sh
+    export PATH="/home/trent/miniconda3/bin:$PATH"  (change username to yours)
+    echo "$SHELL"
+    conda init bash
+
+    conda create -n py37 python=3.7 anaconda
+    conda activate py37
+
+Commands in GCP VM:
+  sudo apt-get update
+  sudo apt-get install ffmpeg libsm6 libxext6  -y
+
+Run flask as a daemon:
+  pip install gunicorn
+
+Start gunicorn:
+  run with 4 workers:
+    gunicorn -w 4 --worker-class gevent -b :5000 app:app
+  run with 1 worker:
+    gunicorn -w 1 --worker-class gevent -b :5000 app:app
+
+  run as daemon:
+    gunicorn -w 1 --worker-class gevent -b :5000 app:app --daemon
+    nohub gunicorn -w 1 --worker-class gevent -b :5000 app:app > app.log &
+
+
+Stopping gunicorn:
+  ps ax|grep gunicorn
+  pkill gunicorn
+
+
+Make image folders for storage and prediction:
+  cd ~/workspace/image-colorizer
+  mkdir -p upload/prediction
+
+TROUBLESHOOTING:
+  Starting gunicorn: gunicorn ModuleNotFoundError: No module named 'tensorflow'
+    pip install tensorflow==1.14.0 --ignore-installed
+
+    h5py - https://stackoverflow.com/questions/53740577/does-any-one-got-attributeerror-str-object-has-no-attribute-decode-whi
+    SOLUTION: pip install 'h5py==2.10.0' --force-reinstall
+      File "/home/trent/workspace/image-colorizer/app.py", line 6, in <module>
+        from prediction import doPrediction
+      File "/home/trent/workspace/image-colorizer/prediction.py", line 26, in <module>
+        model = keras.models.load_model('keras_zhang_model.hdf5')
+      File "/home/trent/miniconda3/envs/py37/lib/python3.7/site-packages/tensorflow/python/keras/saving/save.py", line 146, in load_model
+        return hdf5_format.load_model_from_hdf5(filepath, custom_objects, compile)
+      File "/home/trent/miniconda3/envs/py37/lib/python3.7/site-packages/tensorflow/python/keras/saving/hdf5_format.py", line 210, in load_model_from_hdf5
+        model_config = json.loads(model_config.decode('utf-8'))
+      AttributeError: 'str' object has no attribute 'decode'
+
+      numpy not supported by multiple dependencies:
+        pip install 'h5py==2.10.0' --force-reinstall
+
+      daal not installed
+      SOLUTION: pip install daal==2021.3.0
+        ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+        daal4py 2021.4.0 requires daal==2021.3.0, which is not installed.
+
+      W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning):
+        Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.
+        If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.
+        To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
