@@ -1,29 +1,26 @@
-from flask import Flask, request, render_template
 import os
-from flask import Flask, flash, request, redirect
-
-from werkzeug.utils import secure_filename
-from prediction import doPrediction
-from flask import Flask, jsonify
-from PIL import Image
 import base64
 import io
+from flask import Flask, request, flash, render_template, redirect, jsonify
+from werkzeug.utils import secure_filename
+from prediction import doPrediction
+from PIL import Image
 
 UPLOAD_FOLDER = 'upload'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-# this is the python backend
-# create the web app
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+@app.route('/examples/')
+def examples():
+    return render_template('examples.html')
 
 @app.route('/predictimage', methods=['GET', 'POST'])
 def upload_file():
@@ -60,9 +57,6 @@ def get_encoded_img(image_path):
     my_encoded_img = base64.encodebytes(img_byte_arr.getvalue()).decode('ascii')
     return my_encoded_img
 	
-@app.route('/examples/')
-def examples():
-    return render_template('examples.html')
 
-
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
