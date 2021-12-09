@@ -26,6 +26,10 @@ def examples():
 def info():
     return render_template('info_page.html')
 
+@app.route('/authors/')
+def authors():
+	return render_template('authors.html')
+	
 @app.route('/predictimage', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
