@@ -22,6 +22,10 @@ def index():
 def examples():
     return render_template('examples.html')
 
+@app.route('/info/')
+def info():
+    return render_template('info_page.html')
+
 @app.route('/predictimage', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':

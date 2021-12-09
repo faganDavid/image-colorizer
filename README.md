@@ -19,4 +19,8 @@ Set the python interpreter in VS Code to run the flask app:
 
 The 'Run and Debug' section should allow you to create a launch.json file.
 
+Make sure the upload/prediction directories exist as this is where the user files will be saved.
+    cd workspace/project_folder
+    mkdir -p upload/prediction
+
 Run the flask app from VS Code (F5).
