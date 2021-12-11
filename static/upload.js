@@ -5,8 +5,8 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#grayScaleImg')
                 .attr('src', e.target.result)
-                .width(150)
-                .height(200);
+                .width(300)
+                .height(300);
         };
     
         reader.readAsDataURL(input.files[0]);

@@ -3,20 +3,31 @@
 <html>
 
 <head>
-{% include 'menu.html' %}
+  {% include 'menu.html' %}
 </head>
+
 <body>
-<h1><p style="color:black">Upload a Grayscale Image to Colorize</p></h1>
-</body>
-<canvas id="myCanvas" width="300" height="300" style="z-index: 1;">
-        Your browser does not support the HTML canvas tag.</canvas>
-    <form method="POST" enctype="multipart/form-data">
-        <img id="grayScaleImg" src="#" alt="your image" />
-        <input type="file" name="file" onchange="readURL(this);">
-        <button type="submit" role="button"  >Upload File</button>
-    </form>
+  <div id="wrapper" style="margin: 50px;">
+    <h1>
+      <p style="color:black">Upload a Grayscale Image to Colorize</p>
+    </h1>
+    <div id="graySection" style="float: left;">
+      <div style="width:300px;height:300px;border:solid;padding: 10px;background: white;"> <img id="grayScaleImg"/> </div>
+    </div>
+    <div id="colorSection" style="float: left;margin-left: 60px;">
+      <canvas id="myCanvas" width="300" height="300" style="z-index: 1;border:solid;padding: 10px;background: white;">
+        Your browser does not support the HTML canvas tag.
+      </canvas>
+    </div>
+    <div id="submitSection" style="clear: both;padding-top: 20px;">
+      <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" onchange="readURL(this);" style="width: 384px;">
+        <button type="submit" role="button">Upload File</button>
+      </form>
+    </div>
+  </div>
 
-
-<script src="{{ url_for('static', filename='upload.js') }}"></script>
+  <script src="{{ url_for('static', filename='upload.js') }}"></script>
 </body>
+
 </html>

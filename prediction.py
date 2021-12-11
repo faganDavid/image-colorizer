@@ -110,6 +110,7 @@ def doPrediction(image_name):
         out_bgr = out_bgr.astype(np.uint8)
 
         img_pred_saved=c.image_folder_pred_saved + '/{}_out.png'.format(image_name)
+        out_bgr= cv2.resize(out_bgr, (300, 300))
         cv2.imwrite(img_pred_saved, out_bgr)
 
         return img_pred_saved
