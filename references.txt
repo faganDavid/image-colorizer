@@ -1,0 +1,5 @@
+https://phppot.com/jquery/remove-image-color-using-jquery/
+https://www.w3schools.com/css/css_float_clear.asp
+https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_topnav
+https://www.codegrepper.com/code-examples/python/flask+get+file+path
+https://stackoverflow.com/questions/26276580/how-to-get-current-url-in-jinja2-flask-request-url-not-working
