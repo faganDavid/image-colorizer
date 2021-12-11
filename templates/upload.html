@@ -36,7 +36,7 @@
 </head>
 <body>
     <br />
-    <form action="http://127.0.0.1:5000/predictimage" method="POST" enctype="multipart/form-data">
+    <form action="/predictimage" method="POST" enctype="multipart/form-data">
         <input type='file' name='file' onchange="readURL(this);" />
         <img id="blah" src="#" alt="your image" />
         <button type="submit">Submit & predict</button>
@@ -45,6 +45,6 @@
 	<br />
 	<br /> 
 	<br /> 
-	<a href="http://127.0.0.1:5000/examples"><p style="color:white">To see existing examples:</p></a>
+	<a href="/examples"><p style="color:white">To see existing examples:</p></a>
 </body>
 </html>
