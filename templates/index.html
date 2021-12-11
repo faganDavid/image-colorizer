@@ -4,15 +4,28 @@
 
 <head>
   {% include 'menu.html' %}
+  <style>
+    .grey-scale {
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+  </style>
 </head>
 
 <body>
   <div id="wrapper" style="margin: 50px;">
     <h1>
-      <p style="color:black">Upload a Grayscale Image to Colorize</p>
+      <p style="color:black">Image Colorizer Demo</p>
     </h1>
+    <h4>
+      <p style="color:black">Please upload any image.</p>
+      <p style="color:black">Images with color will be grayscaled first before our model makes the color prediction. </p>
+      <p style="color:black">Hover over your chosen image to see the original colored image you uploaded.</p>
+    </h4>
     <div id="graySection" style="float: left;">
-      <div style="width:300px;height:300px;border:solid;padding: 10px;background: white;"> <img id="grayScaleImg"/> </div>
+      <div style="width:300px;height:300px;border:solid;padding: 10px;background: white;"> 
+        <img id="grayScaleImg" class="grey-scale" onMouseOver="show_original(this)" onMouseOut="show_grey(this)"/>
+      </div>
     </div>
     <div id="colorSection" style="float: left;margin-left: 60px;">
       <canvas id="myCanvas" width="300" height="300" style="z-index: 1;border:solid;padding: 10px;background: white;">
