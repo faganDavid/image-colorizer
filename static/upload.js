@@ -31,6 +31,9 @@ form.addEventListener("submit", (e) => {
   const formData = new FormData();
   formData.append("file", files[0]);
 
+  let modelType=$('form input[type=radio]:checked').val()
+  formData.append("model", modelType);
+
   // post form data
   const xhr = new XMLHttpRequest();
 

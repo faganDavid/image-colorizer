@@ -33,9 +33,20 @@
       </canvas>
     </div>
     <div id="submitSection" style="clear: both;padding-top: 20px;">
-      <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" onchange="readURL(this);" style="width: 384px;">
-        <button type="submit" role="button">Upload File</button>
+      <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        <div style="width: 384px;float: left;">
+          <input type="file" name="file" onchange="readURL(this);" >
+        </div>
+        <div style="float: left;">
+          <button type="submit" role="button">Upload File</button>
+          <br><br>
+          <label for="model_30"><strong>Model pre-trained on 30K images</strong></label>
+          <input type="radio" id="model_30" name="model" value="30" checked="checked">
+          <br>
+          <label for="model_10"><strong>Model pre-trained on 10K images</strong></label>
+          <input type="radio" id="model_10" name="model" value="10">
+        </div>
+
       </form>
     </div>
   </div>

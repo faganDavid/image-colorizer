@@ -25,7 +25,8 @@ graph = tf.get_default_graph()
 # Otherwise, their weights will be unavailable in the threads after the session there has been set
 set_session(sess)
 set_random_seed(2)
-model = keras.models.load_model('keras_zhang_model.hdf5')
+model = keras.models.load_model('keras_zhang_model_30K.hdf5')
+model_10 = keras.models.load_model('keras_zhang_model.hdf5')
 
 class Config():
     def __init__(self) -> None:
@@ -43,7 +44,7 @@ class Config():
 c=Config()    
 
 #https://stackoverflow.com/a/50941282
-def doPrediction(image_name):
+def doPrediction(image_name, modelType):
     global sess
     global graph
     global model
@@ -75,6 +76,10 @@ def doPrediction(image_name):
 
         # L: 0 <=L<= 255, a: 42 <=a<= 226, b: 20 <=b<= 223.
         X_colorized = model.predict(x_test)
+        if modelType == '10':
+            X_colorized = model_10.predict(x_test)
+        else: # 30
+            X_colorized = model.predict(x_test)
 
         X_colorized = X_colorized.reshape((c.h * c.w, c.nb_q))
 
