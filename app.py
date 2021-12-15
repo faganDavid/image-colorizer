@@ -29,6 +29,10 @@ def info():
 @app.route('/authors/')
 def authors():
 	return render_template('authors.html')
+
+@app.route('/video/')
+def video():
+	return render_template('video.html')
 	
 @app.route('/predictimage', methods=['GET', 'POST'])
 def upload_file():
