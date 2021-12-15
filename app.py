@@ -34,6 +34,10 @@ def authors():
 def video():
 	return render_template('video.html')
 	
+@app.route('/poster/')
+def poster():
+	return render_template('poster.html')
+	
 @app.route('/predictimage', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
