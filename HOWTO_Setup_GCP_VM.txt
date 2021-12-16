@@ -31,19 +31,23 @@ Run flask as a daemon:
   pip install gunicorn
 
 Start gunicorn:
+  Please run script from terminal to start the server: 'sudo ./start_gunicorn.sh'
+  
   run with 4 workers:
-    gunicorn -w 4 --worker-class gevent -b :5000 app:app
+    sudo gunicorn -w 4 --worker-class gevent -b :80 app:app
   run with 1 worker:
-    gunicorn -w 1 --worker-class gevent -b :5000 app:app
+    sudo gunicorn -w 1 --worker-class gevent -b :80 app:app
 
   run as daemon:
-    gunicorn -w 1 --worker-class gevent -b :5000 app:app --daemon
-    nohub gunicorn -w 1 --worker-class gevent -b :5000 app:app > app.log &
+    sudo gunicorn -w 1 --worker-class gevent -b :80 app:app --daemon
+    nohub gunicorn -w 1 --worker-class gevent -b :80 app:app > app.log &
 
 
 Stopping gunicorn:
+  Please run script from terminal to stop the server: 'sudo ./stop_gunicorn.sh'
+
+Check gunicorn status:
   ps ax|grep gunicorn
-  pkill gunicorn
 
 
 Make image folders for storage and prediction:
